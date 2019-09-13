@@ -15,6 +15,6 @@ jobs:
     - name: Docker Build
       run: docker build -t 2ndkauboy/docker-letsencrypt .
     - name: Docker Tag
-      run: docker tag docker-letsencrypt docker.pkg.github.com/2ndkauboy/docker-letsencrypt:latest
+      run: docker tag 2ndkauboy/docker-letsencrypt docker.pkg.github.com/2ndkauboy/docker-letsencrypt:latest
     - name: Docker Push
       run: docker push docker.pkg.github.com/2ndkauboy/docker-letsencrypt:latest
