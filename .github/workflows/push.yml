@@ -1,0 +1,29 @@
+on: push
+name: Build Docker Image
+jobs:
+  dockerRegistry:
+    name: Docker Registry
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Docker Registry
+      uses: actions/docker/login@fe7ed3ce992160973df86480b83a2f8ed581cd50
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        entrypoint: docker.pkg.github.com
+    - name: Docker Build
+      uses: actions/docker/cli@fe7ed3ce992160973df86480b83a2f8ed581cd50
+      with:
+        entrypoint: build
+        args: -t 2ndkauboy/docker-letsencrypt .
+    - name: Docker Tag
+      uses: actions/docker/tag@fe7ed3ce992160973df86480b83a2f8ed581cd50
+      with:
+        entrypoint: docker-letsencrypt
+        args: docker.pkg.github.com/2ndkauboy/docker-letsencrypt:latest
+    - name: Docker Push
+      uses: actions/docker/cli@fe7ed3ce992160973df86480b83a2f8ed581cd50
+      with:
+        entrypoint: push
+        args: docker.pkg.github.com/2ndkauboy/docker-letsencrypt:latest
