@@ -10,8 +10,7 @@ jobs:
       uses: actions/docker/login@fe7ed3ce992160973df86480b83a2f8ed581cd50
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        entrypoint: docker.pkg.github.com
+        DOCKER_REGISTRY_URL: docker.pkg.github.com
     - name: Docker Build
       uses: actions/docker/cli@fe7ed3ce992160973df86480b83a2f8ed581cd50
       with:
