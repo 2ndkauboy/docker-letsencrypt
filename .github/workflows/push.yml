@@ -7,7 +7,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Docker Registry
-      uses: actions/docker/login@fe7ed3ce992160973df86480b83a2f8ed581cd50
+      run: echo $DOCKER_PASSWORD | docker login $DOCKER_REGISTRY_URL --username $DOCKER_USERNAME --password-stdin
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
