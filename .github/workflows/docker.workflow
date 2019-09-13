@@ -18,11 +18,11 @@ action "Docker Build" {
 action "Docker Tag" {
   uses = "actions/docker/tag@fe7ed3ce992160973df86480b83a2f8ed581cd50"
   needs = ["Docker Build"]
-  runs = "docker-letsencrypt docker.pkg.github.com/2ndkauboy/docker-letsencrypt/docker-letsencrypt:latest"
+  runs = "docker-letsencrypt docker.pkg.github.com/2ndkauboy/docker-letsencrypt:latest"
 }
 
 action "Docker Push" {
   uses = "actions/docker/cli@fe7ed3ce992160973df86480b83a2f8ed581cd50"
   needs = ["Docker Tag"]
-  runs = "push docker.pkg.github.com/2ndkauboy/docker-letsencrypt/docker-letsencrypt:latest"
+  runs = "push docker.pkg.github.com/2ndkauboy/docker-letsencrypt:latest"
 }
